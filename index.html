@@ -299,11 +299,26 @@
             display: block;
         }
 
-        /* === ABOUT SECTION === */
-        .about-limcoma {
-            padding: 120px 0;
-            background-color: #fff;
-        }
+        /* === ABOUT SECTION (UPDATED: DEEP BLUE BACKGROUND) === */
+.about-limcoma {
+    padding: 120px 0;
+    background: linear-gradient(135deg, #8ea9c2, #1e5fa3);
+}
+
+/* Text color adjustments for blue background */
+.about-limcoma .about-title,
+.about-limcoma .about-text,
+.about-limcoma .feature-list li {
+    color: #ffffff;
+}
+
+.about-limcoma .about-tag {
+    color: #a8d8ff;
+}
+
+.about-limcoma .feature-list i {
+    color: #a8d8ff;
+}
 
         .about-tag {
             color: #1a472a;
@@ -411,6 +426,141 @@
             0% { transform: translateY(0px) rotateX(0deg); }
             50% { transform: translateY(-20px) rotateX(2deg); }
             100% { transform: translateY(0px) rotateX(0deg); }
+        }
+        
+
+        /* === NEW: PRODUCT SECTION STYLING === */
+        .products-section {
+            padding: 100px 0;
+            background-color: #f8f9fa;
+            position: relative;
+        }
+
+        /* Carousel Controls Styling */
+        .carousel-container {
+            position: relative;
+            padding: 0 50px;
+        }
+
+        .product-slider {
+            display: flex;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            gap: 25px;
+            padding: 30px 10px;
+        }
+
+        .product-item {
+            /* Changed: Increased size and set a slightly larger width for better focus */
+            min-width: calc(33.333% - 17px); 
+            transition: transform 0.3s ease;
+        }
+
+        @media (max-width: 992px) {
+            .product-item { min-width: calc(50% - 15px); } /* 2 cards */
+        }
+        @media (max-width: 576px) {
+            .product-item { min-width: 100%; } /* 1 card */
+        }
+
+        .slider-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 45px;
+            height: 45px;
+            background: #1a472a;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            z-index: 10;
+            border: none;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: 0.3s;
+        }
+
+        .slider-btn:hover { background: #26633b; transform: translateY(-50%) scale(1.1); }
+        .prev-btn { left: 0; }
+        .next-btn { right: 0; }
+
+        .product-card {
+            background: #ffffff;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            height: 100%;
+            border: none;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        /* UPDATED: Increased height and adjusted object-fit to contain photo */
+        .product-img-wrapper {
+            height: 350px; /* Increased height */
+            background: #eee;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-img-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Change to 'contain' if you want the whole photo visible without cropping */
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-img-wrapper img {
+            transform: scale(1.1);
+        }
+
+        .product-body {
+            padding: 25px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-weight: 700;
+            font-size: 1.4rem; /* Larger Title */
+            color: #1a2b3c;
+            margin-bottom: 12px;
+        }
+
+        .product-description {
+            color: #666;
+            font-size: 0.95rem;
+            line-height: 1.6;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        .btn-view-products {
+            color: #0a5d73;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            transition: gap 0.3s ease;
+            gap: 8px;
+            font-size: 1rem;
+        }
+
+        .btn-view-products:hover {
+            text-decoration: none;
+            gap: 12px;
+            color: #1a472a;
         }
 
         /* SCROLL REVEAL CLASSES */
@@ -520,7 +670,7 @@
         </div>
     </section>
 
-    <section class="about-limcoma" id="products-section">
+    <section class="about-limcoma">
         <div class="container">
             <div class="row align-items-center">
                 <div class="col-lg-6 pr-lg-5 reveal">
@@ -540,6 +690,84 @@
                 </div>
                 <div class="col-lg-6 mt-5 mt-lg-0 image-container">
                     <img src="farmerss.jpg" alt="Farmers in field" class="about-img reveal" id="moving-img">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="products-section" id="products-section">
+        <div class="container text-center mb-5">
+            <span class="about-tag reveal">Our Products</span>
+            <h2 class="about-title reveal">Premium Animal Feeds</h2>
+            <p class="lead reveal mx-auto" style="max-width: 700px; color: #666;">
+                Scientifically formulated feeds to ensure the health and maximum growth of your livestock.
+            </p>
+        </div>
+        
+        <div class="container carousel-container reveal">
+            <button class="slider-btn prev-btn" onclick="slide('left')"><i class="fas fa-chevron-left"></i></button>
+            <button class="slider-btn next-btn" onclick="slide('right')"><i class="fas fa-chevron-right"></i></button>
+
+            <div class="product-slider" id="product-slider">
+                <div class="product-item">
+                    <div class="product-card">
+                        <div class="product-img-wrapper"><img src="pigs.jpg" alt="Hog Feeds"></div>
+                        <div class="product-body">
+                            <h3 class="product-title">Hog Feeds</h3>
+                            <p class="product-description">Complete nutrition for swine from starter to finisher. Ensures rapid growth.</p>
+                            <a href="#" class="btn-view-products">View Products <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-card">
+                        <div class="product-img-wrapper"><img src="broiler.jpg" alt="Premium Broiler Feeds"></div>
+                        <div class="product-body">
+                            <h3 class="product-title">Premium Broiler Feeds</h3>
+                            <p class="product-description">Balanced diet for broilers and layers. Promotes healthy feathers.</p>
+                            <a href="#" class="btn-view-products">View Products <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-card">
+                        <div class="product-img-wrapper"><img src="aqua.jpg" alt="Fish Floater Feeds"></div>
+                        <div class="product-body">
+                            <h3 class="product-title">Fish Floater Feeds</h3>
+                            <p class="product-description">Specialized floating feeds for tilapia and milkfish. Maximizes yield.</p>
+                            <a href="#" class="btn-view-products">View Products <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-card">
+                        <div class="product-img-wrapper"><img src="cattle.jpg" alt="Premium Cattle Feeds"></div>
+                        <div class="product-body">
+                            <h3 class="product-title">Premium Cattle Feeds</h3>
+                            <p class="product-description">High-protein formulas for active pets. Fortified with essential vitamins.</p>
+                            <a href="#" class="btn-view-products">View Products <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-card">
+                        <div class="product-img-wrapper"><img src="titanium.jpg" alt="Titanium at Balisong Feeds"></div>
+                        <div class="product-body">
+                            <h3 class="product-title">Titanium at Balisong Feeds</h3>
+                            <p class="product-description">Premium cattle feed for optimal weight gain and muscle development.</p>
+                            <a href="#" class="btn-view-products">View Products <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+                <div class="product-item">
+                    <div class="product-card">
+                        <div class="product-img-wrapper"><img src="duck.jpg" alt="Duck Feeds"></div>
+                        <div class="product-body">
+                            <h3 class="product-title">Duck & Quail Feeds</h3>
+                            <p class="product-description">High-fiber pellets designed for healthy digestion and breeding success.</p>
+                            <a href="#" class="btn-view-products">View Products <i class="fas fa-arrow-right"></i></a>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -566,7 +794,19 @@
     </footer>
 
     <script>
-        // NEW: Toggle Blueprint Module
+        // Updated: Slider Control Function to handle 3 cards at once
+        function slide(direction) {
+            const slider = document.getElementById('product-slider');
+            // Move by the full width of the container to show the next set of 3
+            const scrollAmount = slider.offsetWidth; 
+            if (direction === 'left') {
+                slider.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+            } else {
+                slider.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+            }
+        }
+
+        // Toggle Blueprint Module
         function toggleBlueprint(e) {
             const module = document.getElementById('blueprint-module');
             const body = document.body;
@@ -575,14 +815,14 @@
                 module.style.opacity = '0';
                 setTimeout(() => {
                     module.classList.remove('active');
-                    body.style.overflow = 'auto'; // Re-enable scroll
+                    body.style.overflow = 'auto';
                 }, 500);
             } else {
                 module.classList.add('active');
                 setTimeout(() => {
                     module.style.opacity = '1';
                 }, 10);
-                body.style.overflow = 'hidden'; // Disable background scroll
+                body.style.overflow = 'hidden';
             }
         }
 
@@ -591,14 +831,16 @@
         let index = 0;
 
         function typeText() {
-            if (index < text.length) {
-                document.getElementById("typing-effect").innerHTML += text.charAt(index);
+            const target = document.getElementById("typing-effect");
+            if (target && index < text.length) {
+                target.innerHTML += text.charAt(index);
                 index++;
                 setTimeout(typeText, 50);
-            } else {
-                document.getElementById("typing-effect").style.borderRight = "none";
+            } else if (target) {
+                target.style.borderRight = "none";
             }
         }
+        window.onload = typeText;
 
         // Scroll Reveal and Header Scroll Logic
         function handleScroll() {
@@ -607,22 +849,18 @@
             const heroContent = document.getElementById('hero-content');
             let scrollVal = window.scrollY;
 
-            // Header Change
             if (scrollVal > 50) {
                 header.classList.add('scrolled');
             } else {
                 header.classList.remove('scrolled');
             }
 
-            // Parallax Background with Blur Effect
             if (heroBg) {
                 heroBg.style.transform = `translateY(${scrollVal * 0.4}px)`;
-                // Gradually blur and desaturate background on scroll
                 let blurPower = Math.min(scrollVal / 100, 5); 
                 heroBg.style.filter = `blur(${blurPower}px) brightness(${1 - scrollVal/2000})`;
             }
 
-            // Hero Content Fade & Scale out
             if (heroContent) {
                 let opacityVal = 1 - (scrollVal / 600);
                 let scaleVal = 1 - (scrollVal / 3000);
@@ -630,7 +868,6 @@
                 heroContent.style.transform = `translateY(${scrollVal * 0.2}px) scale(${scaleVal})`;
             }
 
-            // Scroll Reveal Logic
             var reveals = document.querySelectorAll(".reveal");
             for (var i = 0; i < reveals.length; i++) {
                 var windowHeight = window.innerHeight;
@@ -641,43 +878,30 @@
                 }
             }
         }
+        window.addEventListener("scroll", handleScroll);
 
-        // NEW: Javascript Image Movement (Tilt Effect)
+        // Javascript Image Movement (Tilt Effect)
         const el = document.getElementById('moving-img');
         const container = document.querySelector('.image-container');
 
-        container.addEventListener('mousemove', (e) => {
-            const rect = container.getBoundingClientRect();
-            const x = e.clientX - rect.left; // x position within element
-            const y = e.clientY - rect.top;  // y position within element
-            
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            // Calculate rotation (max 15 degrees)
-            const rotateX = ((y - centerY) / centerY) * -15;
-            const rotateY = ((x - centerX) / centerX) * 15;
-            
-            // Apply transformation
-            el.style.animation = 'none'; // Pause floating animation while interacting
-            el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.05, 1.05, 1.05)`;
-        });
+        if (container && el) {
+            container.addEventListener('mousemove', (e) => {
+                const rect = container.getBoundingClientRect();
+                const x = e.clientX - rect.left; 
+                const y = e.clientY - rect.top;  
+                const centerX = rect.width / 2;
+                const centerY = rect.height / 2;
+                const rotateX = ((y - centerY) / centerY) * -15;
+                const rotateY = ((x - centerX) / centerX) * 15;
+                
+                el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale3d(1.02, 1.02, 1.02)`;
+            });
 
-        container.addEventListener('mouseleave', () => {
-            // Smoothly return to floating animation
-            el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
-            setTimeout(() => {
-                el.style.animation = 'floatImage 6s ease-in-out infinite';
-            }, 100);
-        });
-
-        window.addEventListener("scroll", handleScroll);
-
-        window.onload = function() {
-            typeText();
-            handleScroll();
-        };
+            container.addEventListener('mouseleave', () => {
+                el.style.transform = `perspective(1000px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)`;
+                el.style.transition = 'all 0.5s ease';
+            });
+        }
     </script>
-
 </body>
 </html>
